@@ -1,0 +1,21 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<h1>Survey Details</h1>
+
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+          <a href="{% url 'question_create' survey.id %}">Question</a>
+        <span class="card-title">{{ survey.name }}</span>
+        {% for question in questions %}
+            <p>{{ question.question_text }}</p>
+            <p>{{ question.option_one }}</p>
+            <p>{{ question.option_two }}</p>
+            <p>{{ question.option_three }}</p>
+        {% endfor %}
+      </div>
+    </div>
+    
+{% endblock %}

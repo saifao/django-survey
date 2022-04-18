@@ -47,3 +47,9 @@ class questions_create(CreateView):
     print(self.kwargs['survey_id'])
     form.instance.survey = Survey.objects.get(id=self.kwargs['survey_id'])
     return super().form_valid(form)
+
+def survey_detail(request, survey_id):
+  print(survey_id)
+  survey = Survey.objects.get(id=survey_id)
+  questions = Question.objects.filter(survey=survey_id)
+  return render(request, 'surveys/detail.html', {'survey': survey, 'questions': questions})
