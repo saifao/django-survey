@@ -18,14 +18,17 @@
         <div class="nav-wrapper">
             <nav>
                 <ul class="primary-nav">
+                {% if user.is_authenticated %}
                     <li><a href="#">Django<span>Survey</span></a></li>
                     <li><a href="{% url 'create' %}">Create Survey</a></li>
                     <li><a href="#">Your Surveys</a></li>
                 </ul>
-
+                {% else %}
                 <ul class="login-nav">
                     <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
                 </ul>
+                {% endif %}
             </nav>
         </div>
     </header>
