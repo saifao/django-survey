@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from .models import Survey, Question
+from django.views.generic.edit import CreateView, DeleteView
 
 def signup(request):
   error_message = ''
@@ -23,3 +25,25 @@ def signup(request):
 
 def home(request):
   return render(request, 'home.html')
+
+def surveys_index(request):
+  surveys = Survey.objects.all()
+  return render(request, 'surveys/index.html', {'surveys' : surveys})
+
+class surveys_create(CreateView):
+  model = Survey
+  fields = ['name']
+  success_url = '/surveys/'
+
+  def form_valid(self, form):
+    form.instance.owner = self.request.user
+    return super().form_valid(form)
+
+class questions_create(CreateView):
+  model = Question
+  fields = ['question_text', 'option_one', 'option_two', 'option_three']
+
+  def form_valid(self, form):
+    print(self.kwargs['survey_id'])
+    form.instance.survey = Survey.objects.get(id=self.kwargs['survey_id'])
+    return super().form_valid(form)
