@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,24 +12,25 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
+
 <body>
     <header class="navbar-fixed">
         <div class="nav-wrapper">
             <nav>
                 <ul class="primary-nav">
-                        <li><a href="#">Django<span>Survey</span></a></li>
-                        <li><a href="#">Create Survey</a></li>
-                        <li><a href="#">Your Surveys</a></li>
-                    </ul>
-                    
-                    <ul class="login-nav">
-                        <li><a href="#">Log In</a></li>
-                    </ul>
-                </nav>
-            </div>
+                    <li><a href="#">Django<span>Survey</span></a></li>
+                    <li><a href="{% url 'create' %}">Create Survey</a></li>
+                    <li><a href="#">Your Surveys</a></li>
+                </ul>
+
+                <ul class="login-nav">
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-        
-        <main class="container">
+
+    <main class="container">
         {% block content %}
         {% endblock %}
     </main>
@@ -36,4 +38,5 @@
         <div>Footer</div>
     </footer>
 </body>
+
 </html>
