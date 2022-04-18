@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for survey in surveys %}
+<div class="card">
+  <a href="{% url 'detail' survey.id %}">
+        <div class="card-content">
+          <span class="card-title">{{ survey.name }}</span>
+        </div>
+    </a>
+</div>
+{% endfor %}
+
+{% endblock %}

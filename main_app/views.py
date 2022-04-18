@@ -53,3 +53,8 @@ def survey_detail(request, survey_id):
   survey = Survey.objects.get(id=survey_id)
   questions = Question.objects.filter(survey=survey_id)
   return render(request, 'surveys/detail.html', {'survey': survey, 'questions': questions})
+
+def dashboard(request):
+  print(request.user)
+  surveys = Survey.objects.filter(owner=request.user.id)
+  return render(request, 'dashboard.html', {'surveys' : surveys})
