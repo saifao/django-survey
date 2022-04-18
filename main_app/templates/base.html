@@ -21,7 +21,7 @@
                 {% if user.is_authenticated %}
                     <li><a href="#">Django<span>Survey</span></a></li>
                     <li><a href="{% url 'create' %}">Create Survey</a></li>
-                    <li><a href="#">Your Surveys</a></li>
+                    <li><a href="{% url 'dashboard'%}">Your Surveys</a></li>
                 </ul>
                 {% else %}
                 <ul class="login-nav">
