@@ -8,6 +8,7 @@
     <div class="card">
       <div class="card-content">
           <a href="{% url 'question_create' survey.id %}">Question</a>
+          <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
         <span class="card-title">{{ survey.name }}</span>
         {% for question in questions %}
             <p>{{ question.question_text }}</p>
