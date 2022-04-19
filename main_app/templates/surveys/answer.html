@@ -1,0 +1,22 @@
+
+
+<form action="{% url 'survey_vote' %}" method="POST">
+    {% csrf_token %}
+    {% for question in questions %}
+        <label>{{ question.question_text }}</label>
+        <div>
+            <input type="radio" id="huey" name="{{ question.id }}" value="option_one"
+            checked>
+            <label for="option_one">{{ question.option_one }}</label>
+        </div>
+        <div>
+            <input type="radio" id="huey" name="{{ question.id }}" value="option_two">
+            <label for="option_two">{{ question.option_two }}</label>
+        </div>
+        <div>
+            <input type="radio" id="huey" name="{{ question.id }}" value="option_three">
+            <label for="option_three">{{ question.option_three }}</label>
+        </div>
+    {% endfor %}
+    <input type="submit" value="Vote!" class="btn">
+</form>

@@ -58,3 +58,24 @@ def dashboard(request):
   print(request.user)
   surveys = Survey.objects.filter(owner=request.user.id)
   return render(request, 'dashboard.html', {'surveys' : surveys})
+
+class SurveyDelete(DeleteView):
+  model = Survey
+  success_url = '/dashboard/'
+
+def survey_vote(request):
+  for key, value in request.POST.items():
+    if key != 'csrfmiddlewaretoken':
+      q = Question.objects.get(id=key)
+      votes = getattr(q, f"{value}_votes")
+      setattr(q, f"{value}_votes", votes + 1)
+      q.save()
+  return redirect('index')
+
+def survey_answer(request, survey_id):
+  survey = Survey.objects.get(id=survey_id)
+  questions = Question.objects.filter(survey=survey_id)
+  return render(request, 'surveys/answer.html', {'survey': survey, 'questions': questions})
+
+
+  
