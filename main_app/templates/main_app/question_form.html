@@ -2,12 +2,15 @@
 
 {% block content %}
 
+<center>
+  <h1>{{ survey_name }}</h1>
+</center>
 <form action="" method="post">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-    </table>
-    <input type="submit" value="Add Question" class="btn">
-  </form>
+  {% csrf_token %}
+  <table>
+    {{ form.as_table }}
+  </table>
+  <input type="submit" value="Add Question" class="btn">
+</form>
 
 {% endblock %}
