@@ -18,5 +18,33 @@
         {% endfor %}
       </div>
     </div>
+
+  <div class="col s6">
+    <div class="highlight">
+      {% for question in questions %}
+      <h3>{{ question.question_text}}</h3>
+      <table>
+        <thead>
+          <th>Option</th>
+          <th>Votes</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ question.option_one }}</td>
+            <td>{{ question.option_one_votes }}</td>
+          </tr>
+          <tr>
+            <td>{{ question.option_two }}</td>
+            <td>{{ question.option_two_votes }}</td>
+          </tr>
+          <tr>
+            <td>{{ question.option_three }}</td>
+            <td>{{ question.option_three_votes }}</td>
+          </tr>
+        </tbody>
+      </table>  
+      {% endfor %}
+    </div>
+    </div>
     
 {% endblock %}
