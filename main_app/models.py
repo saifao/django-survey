@@ -5,7 +5,8 @@ from django.urls import reverse
 
 class Survey(models.Model):
     name = models.CharField(max_length=100)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_owner')
+    users_taken = models.ManyToManyField(User, related_name='user_taken')
 
     def __str__(self):
         return self.name
@@ -27,10 +28,6 @@ class Question(models.Model):
         return self.question_text
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={'survey_id': self.survey.id})
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    survey_taken = models.ManyToManyField(Survey)
+       return reverse('question_create', kwargs={'survey_id': self.survey.id})
+       ##return reverse('detail', kwargs={'survey_id': self.survey.id})
 

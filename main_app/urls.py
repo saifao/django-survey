@@ -10,9 +10,7 @@ urlpatterns = [
     path('survey/<int:survey_id>/questions/create', views.questions_create.as_view(), name='question_create'),
     path('dashboard/', views.dashboard, name= 'dashboard'),
     path('surveys/<int:pk>/delete/', views.SurveyDelete.as_view(), name='survey_delete'),
-    path('survey/vote/', views.survey_vote, name='survey_vote'),
+    path('survey/<int:survey_id>/vote/', views.survey_vote, name='survey_vote'),
     path('survey/<int:survey_id>/answer', views.survey_answer, name='survey_answer'),
-
-
-
+    path('survey/<int:survey_id>/assoc_user/<int:user_id>/', views.assoc_user, name = 'assoc_user')
 ]

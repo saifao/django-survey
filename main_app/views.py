@@ -49,17 +49,18 @@ class questions_create(CreateView):
   
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    context['survey_name'] = Survey.objects.get(id=self.kwargs['survey_id'])
+    context['survey'] = Survey.objects.get(id=self.kwargs['survey_id'])
+    context['questions'] = Question.objects.filter(survey=self.kwargs['survey_id'])
     return context
 
 def survey_detail(request, survey_id):
-  print(survey_id)
   survey = Survey.objects.get(id=survey_id)
   questions = Question.objects.filter(survey=survey_id)
-  return render(request, 'surveys/detail.html', {'survey': survey, 'questions': questions})
+  taken = survey.users_taken.filter(id=request.user.id).exists()
+  taken_count = len(survey.users_taken.all())
+  return render(request, 'surveys/detail.html', {'survey': survey, 'questions': questions, 'taken': taken, 'taken_count' : taken_count})
 
 def dashboard(request):
-  print(request.user)
   surveys = Survey.objects.filter(owner=request.user.id)
   return render(request, 'dashboard.html', {'surveys' : surveys})
 
@@ -67,19 +68,23 @@ class SurveyDelete(DeleteView):
   model = Survey
   success_url = '/dashboard/'
 
-def survey_vote(request):
+def survey_vote(request, survey_id):
   for key, value in request.POST.items():
     if key != 'csrfmiddlewaretoken':
       q = Question.objects.get(id=key)
       votes = getattr(q, f"{value}_votes")
       setattr(q, f"{value}_votes", votes + 1)
       q.save()
-  return redirect('index')
+  return redirect('assoc_user', survey_id=survey_id, user_id=request.user.id)
 
 def survey_answer(request, survey_id):
   survey = Survey.objects.get(id=survey_id)
   questions = Question.objects.filter(survey=survey_id)
   return render(request, 'surveys/answer.html', {'survey': survey, 'questions': questions})
+
+def assoc_user(request, survey_id, user_id):
+  Survey.objects.get(id=survey_id).users_taken.add(user_id)
+  return redirect('index')
 
 
   
