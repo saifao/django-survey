@@ -7,10 +7,15 @@
   <div class="col s6">
     <div class="card">
       <div class="card-content">
-        {% if user.id == survey.owner_id %}
-        <a href="{% url 'question_create' survey.id %}">Question |</a>
+        {% if user.id == survey.owner_id  and taken_count == 0%}
+          <a href="{% url 'question_create' survey.id %}">Question |</a>
         {% endif %}
-        <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
+
+        {% if taken %}
+          <p>Taken</p>
+        {% else %}
+          <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
+        {% endif %}
         <span class="card-title">{{ survey.name }}</span>
         {% for question in questions %}
         <p>{{ question.question_text }}</p>

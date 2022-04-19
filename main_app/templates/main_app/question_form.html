@@ -2,8 +2,14 @@
 
 {% block content %}
 
+<ul>
+    {% for question in questions%}
+        <li>{{ question.question_text }}</li>
+    {% endfor %}
+</ul>
+
 <center>
-  <h1>{{ survey_name }}</h1>
+  <h1>{{ survey.name }}</h1>
 </center>
 <form action="" method="post">
   {% csrf_token %}
@@ -11,6 +17,7 @@
     {{ form.as_table }}
   </table>
   <input type="submit" value="Add Question" class="btn">
+  <a href="{% url 'detail' survey.id %}">Done</a>
 </form>
 
 {% endblock %}
