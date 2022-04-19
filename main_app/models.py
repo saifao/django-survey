@@ -10,6 +10,8 @@ class Survey(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('question_create', kwargs={'survey_id': self.id})
 
 class Question(models.Model):
     survey = models.ForeignKey(Survey, on_delete=models.CASCADE)

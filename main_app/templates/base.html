@@ -18,10 +18,11 @@
         <div class="nav-wrapper">
             <nav>
                 <ul class="primary-nav">
-                {% if user.is_authenticated %}
-                    <li><a href="#">Django<span>Survey</span></a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'index' %}">Survey Funky</a></li>
+                    <li><a href="{% url 'index' %}">Explore</a></li>
                     <li><a href="{% url 'create' %}">Create Survey</a></li>
-                    <li><a href="{% url 'dashboard'%}">Your Surveys</a></li>
+                    <li><a href="{% url 'dashboard'%}">Dashboard</a></li>
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 </ul>
                 {% else %}

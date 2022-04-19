@@ -24,7 +24,7 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 def home(request):
-  return render(request, 'home.html')
+  return redirect('login')
 
 def surveys_index(request):
   surveys = Survey.objects.all()
@@ -33,7 +33,6 @@ def surveys_index(request):
 class surveys_create(CreateView):
   model = Survey
   fields = ['name']
-  success_url = '/surveys/'
 
   def form_valid(self, form):
     form.instance.owner = self.request.user
@@ -47,6 +46,11 @@ class questions_create(CreateView):
     print(self.kwargs['survey_id'])
     form.instance.survey = Survey.objects.get(id=self.kwargs['survey_id'])
     return super().form_valid(form)
+  
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['survey_name'] = Survey.objects.get(id=self.kwargs['survey_id'])
+    return context
 
 def survey_detail(request, survey_id):
   print(survey_id)
