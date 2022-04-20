@@ -34,12 +34,6 @@ main {
     flex: 1 0 auto;
 }
 
-.container {
-    /* display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center; */
-}
 
 footer.page-footer {
     padding-top: 0;
@@ -102,4 +96,17 @@ footer.page-footer {
 
 .question_add_btn {
     margin: 20px;
+}
+
+#surveycreateform {
+    text-align: center;
+}
+
+.surveyname {
+    text-align: center;
+}
+
+#questiontext {
+    text-align: center;
+    padding-top: 1em;
 }

@@ -2,12 +2,19 @@
 
 {% block content %}
 
-<form action="" method="post">
+
+
+<div class="card blue-grey darken-1"></div>
+  <h3 id="surveycreateform">Create A New Survey</h3>
+  <form class="surveyforms" action="" method="post id="form_in_question_form">
     {% csrf_token %}
     <table>
       {{ form.as_table }}
     </table>
-    <input type="submit" value="Create Survey" class="btn">
+    <div class="right-align">  
+      <input type="submit" value="Create Survey" class="btn">
+    </div>
   </form>
+</div>
 
 {% endblock %}
