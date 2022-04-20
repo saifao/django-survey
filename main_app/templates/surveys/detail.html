@@ -1,30 +1,21 @@
 {% extends 'base.html'%}
 {% block content %}
 
-<h1>Survey Details</h1>
+<h1>{{ survey.name }}</h1>
 
-<div class="row">
-  <div class="col s6">
-    <div class="card">
-      <div class="card-content">
-        {% if user.id == survey.owner_id  and taken_count == 0%}
-          <a href="{% url 'question_create' survey.id %}">Question |</a>
-        {% endif %}
+<div class="#">
+  <h3>{{ survey.description }}</h3>
+  {% if user.id == survey.owner_id  and taken_count == 0%}
+    <a href="{% url 'question_create' survey.id %}">Question |</a>
+  {% endif %}
 
-        {% if taken %}
-          <p>Taken</p>
-        {% else %}
-          <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
-        {% endif %}
-        <span class="card-title">{{ survey.name }}</span>
-        {% for question in questions %}
-        <p>{{ question.question_text }}</p>
-        <p>{{ question.option_one }}</p>
-        <p>{{ question.option_two }}</p>
-        <p>{{ question.option_three }}</p>
-        {% endfor %}
-      </div>
-    </div>
+  {% if taken %}
+    <p>Taken</p>
+  {% else %}
+    <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
+  {% endif %}
+</div>
+
 
     <div class="col s6">
       <div class="highlight">
