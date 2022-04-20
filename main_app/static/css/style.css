@@ -35,10 +35,10 @@ main {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
 
 footer.page-footer {
@@ -63,7 +63,13 @@ footer.page-footer {
 }
 
 
+.question-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
 
-
-
-
+.taken:hover {
+    text-decoration: none;
+}

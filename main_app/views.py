@@ -37,7 +37,7 @@ def surveys_index(request):
 
 class surveys_create(CreateView):
   model = Survey
-  fields = ['name']
+  fields = ['name', 'description']
 
   def form_valid(self, form):
     form.instance.owner = self.request.user
