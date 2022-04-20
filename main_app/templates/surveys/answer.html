@@ -1,15 +1,16 @@
 {% extends 'base.html'%}
 {% block content %}
-
+<h3 class="surveyname">{{ survey.name }}</h3>
 <form action="{% url 'survey_vote' survey.id %}" method="POST">
     {% csrf_token %}
     {% for question in questions %}
-        <label>{{ question.question_text }}</label>
+    <div class="card" id="questiontext">
+    <label class="questiontext">{{ question.question_text }}</label>
         <p>
-        <label>
-            <input type="radio" name="{{ question.id }}" value="option_one" checked/>
-            <span>{{ question.option_one }}</span>
-        </label>
+            <label>
+                <input type="radio" name="{{ question.id }}" value="option_one" checked/>
+                <span>{{ question.option_one }}</span>
+            </label>
         </p>
         <p>
             <label>
@@ -23,10 +24,11 @@
                 <span>{{ question.option_three }}</span>
             </label>
         </p>
-    {% endfor %}
-    <input type="submit" value="Vote!" class="btn">
-</form>
-
+    </div>
+        {% endfor %}
+        <input type="submit" value="Vote!" class="btn">
+    </form>
+    
 {% endblock %}
 
 
