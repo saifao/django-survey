@@ -1,0 +1,55 @@
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
+nav {
+    background-color: #2f6c68;
+}
+
+.container {
+    width: 100%;
+}
+
+.featured-survey {
+    background-image: url("https://i.imgur.com/s4WF1Vu.jpg") !important;
+    color: white;
+    font-weight: bolder;
+    background-size: cover;
+    height: 90vh;
+    width: 100%;
+}
+
+#logo {
+    font-family: 'Monoton', cursive;
+    font-size: 30px;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer.page-footer {
+    padding-top: 0;
+    text-align: right;
+    background-color: #2f6c68;
+}
+
+
+
+
+
+
+

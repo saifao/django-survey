@@ -28,6 +28,11 @@ def home(request):
 
 def surveys_index(request):
   surveys = Survey.objects.all()
+  for survey in surveys:
+    if survey.users_taken.filter(id=request.user.id).exists():
+      survey.taken = True
+    else:
+      survey.taken = False
   return render(request, 'surveys/index.html', {'surveys' : surveys})
 
 class surveys_create(CreateView):
