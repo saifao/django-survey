@@ -50,7 +50,6 @@ footer.page-footer {
 .col,
 .card {
     width: 100%;
-    height: 100%;
     display: inline-block;
 }
 
@@ -121,6 +120,11 @@ dashboard css
     align-items: center;
 }
 
+.dashboard-container > div {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
 .dashboard-container .card {
     width: 50vw;
 }
@@ -137,3 +141,18 @@ dashboard css
 #description {
     margin-bottom: 5px;
 }
+
+
+
+.page-title {
+    text-align: center !important;
+}
+
+.card-height {
+    height: 200px !important;
+}
+
+.btn-standard {
+    margin: 8px;
+}
+
