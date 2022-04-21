@@ -1,0 +1,50 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<div id="detail_heading">
+  <h1>{{ survey.name }}</h1>
+
+  <div class="#">
+    <h3>{{ survey.description }}</h3>
+    {% if user.id == survey.owner_id and taken_count == 0%}
+    <a href="{% url 'question_create' survey.id %}">Question</a>
+    {% endif %}
+
+    {% if taken %}
+    <p>Taken</p>
+    {% elif questions.count > 0 %}
+    <a href="{% url 'survey_answer' survey.id %}"> | Take Survey</a>
+    {% endif %}
+  </div>
+</div>
+
+
+<div class="col s6">
+  <div class="highlight">
+    {% for question in questions %}
+    <h3>{{ question.question_text}}</h3>
+    <table>
+      <thead>
+        <th>Option</th>
+        <th>Votes</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ question.option_one }}</td>
+          <td>{{ question.option_one_votes }}</td>
+        </tr>
+        <tr>
+          <td>{{ question.option_two }}</td>
+          <td>{{ question.option_two_votes }}</td>
+        </tr>
+        <tr>
+          <td>{{ question.option_three }}</td>
+          <td>{{ question.option_three_votes }}</td>
+        </tr>
+      </tbody>
+    </table>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
