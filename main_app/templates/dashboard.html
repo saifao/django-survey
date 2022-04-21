@@ -1,16 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{% for survey in surveys %}
-<div class="card">
-  <a href="{% url 'detail' survey.id %}">
-        <div class="card-content">
-          <span class="card-title">{{ survey.name }}</span>
-          <a href="{% url 'survey_delete' survey.id %}">Delete</a>
-        </div>
-    </a>
+<div class="dashboard-container">
+    <h1>My Surveys</h1>
+    {% if surveys.count == 0 %}
+        <h3>No surveys yet. Create a survey!</h3>
+    {% else %}
+        {% for survey in surveys %}
+            {% if survey.hasQuestions == True %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">{{ survey.name }}</span>
+                        <p id="description">{{ survey.description }}</p>
+                        <a href="{% url 'detail' survey.id %}" class="waves-effect waves-light btn">View Details</a>
+                        <a href="{% url 'survey_delete' survey.id %}" class="waves-effect waves-light btn">Delete</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    <h1>Unpublished</h1>
+    {% for survey in surveys %}
+        {% if survey.hasQuestions == False %}
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">{{ survey.name }}</span>
+                    <p id="description">{{ survey.description }}</p>
+                    <a href="{% url 'detail' survey.id %}" class="waves-effect waves-light btn">View Details</a>
+                    <a href="{% url 'survey_delete' survey.id %}" class="waves-effect waves-light btn">Delete</a>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
 </div>
-{% endfor %}
 
 {% endblock %}
