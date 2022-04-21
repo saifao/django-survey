@@ -14,20 +14,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
-    <header class="navbar-fixed">
-        <nav>
-             <div class="nav-wrapper">
-            
-                <a href="{% url 'index' %}" class="brand-logo left" id="logo">Survey Funky</a>
-                <!-- <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> -->
-                <ul class="right">
+    <header>
+        <nav class="nav-wrapper">
+             <div class="container">    
+                <a href="{% url 'index' %}" class="brand-logo" id="logo">Survey Funky</a>
+                <a href="#" data-target="mobile-links" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
                     {% if user.is_authenticated %}
-                        <li class="tab"><a href="{% url 'index' %}">Explore</a></li>
-                        <li class="tab"><a href="{% url 'create' %}">Create Survey</a></li>
+                        <li><a href="{% url 'index' %}">Explore</a></li>
+                        <li><a href="{% url 'create' %}">Create Survey</a></li>
                         <li><a href="{% url 'dashboard'%}">Dashboard</a></li>
                         <li><a href="{% url 'logout' %}">Logout</a></li>
                     {% else %}
@@ -37,8 +40,18 @@
                 </ul>
             </div>
         </nav>
+        <ul class="sidenav" id="mobile-links">
+            <li><a href="{% url 'index' %}">Explore</a></li>
+            <li><a href="{% url 'create' %}">Create Survey</a></li>
+            <li><a href="{% url 'dashboard'%}">Dashboard</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
     </header>
-
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        })
+    </script>
     <main class="container">
         {% block content %}
         {% endblock %}
