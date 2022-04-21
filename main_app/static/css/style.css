@@ -43,8 +43,10 @@ footer.page-footer {
 
 
 .surveycard {
+    display: flex;
+    align-items: center;
     height: 200px;
-    width: 400px;
+    width: 500px;
 }
 
 .col,
@@ -54,7 +56,8 @@ footer.page-footer {
 }
 
 .col {
-    width: 100% !important;
+    width: 50vw !important;
+    /* width: 100% !important; */
 }
 
 
