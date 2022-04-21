@@ -1,10 +1,12 @@
 # Survey Funky
 
-Survey Funky is a full-stack CRUD app developed using the Python-based Django Framework. Anyone can sign up by creating an account on the app. Then, if a user would like to create a survey then can do so by clicking Create Survey. Multiple questions can be added to a Survey, and multiple answer choices can be added during each question creation. 
+Survey Funky is a full-stack CRUD app developed using the Python-based Django Framework. Anyone can sign up by creating an account on the app. Then, if a user would like to create a survey they can do so by clicking Create Survey. Multiple questions can be added to a Survey, and multiple answer choices can be added during each question creation. 
 
 In addition to the Survey creation capabilty, logged in users can view a summary of results for each Survey by clicking on Explore in the navigation. A User can click on View Details on any particular Survey to see these results. By clicking on Take Survey the User can complete a Survey and submit it by clicking Vote. 
 
 A Survey owner can view and delete surveys that they created through the Dashboard view. The Dashboard can be conveniently accessed through the nav bar.
+
+Responsive design has been applied.
 
 ### Technologies used
 - JavaScript
