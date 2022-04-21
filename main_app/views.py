@@ -3,6 +3,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Survey, Question
 from django.views.generic.edit import CreateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def signup(request):
   error_message = ''
@@ -26,6 +28,7 @@ def signup(request):
 def home(request):
   return redirect('login')
 
+@login_required
 def surveys_index(request):
   surveys = Survey.objects.all()
   for survey in surveys:
@@ -37,7 +40,7 @@ def surveys_index(request):
       survey.taken = False
   return render(request, 'surveys/index.html', {'surveys' : surveys})
 
-class surveys_create(CreateView):
+class surveys_create(LoginRequiredMixin, CreateView):
   model = Survey
   fields = ['name', 'description']
 
@@ -45,7 +48,8 @@ class surveys_create(CreateView):
     form.instance.owner = self.request.user
     return super().form_valid(form)
 
-class questions_create(CreateView):
+
+class questions_create(LoginRequiredMixin, CreateView):
   model = Question
   fields = ['question_text', 'option_one', 'option_two', 'option_three']
 
@@ -60,6 +64,7 @@ class questions_create(CreateView):
     context['questions'] = Question.objects.filter(survey=self.kwargs['survey_id'])
     return context
 
+@login_required
 def survey_detail(request, survey_id):
   survey = Survey.objects.get(id=survey_id)
   questions = Question.objects.filter(survey=survey_id)
@@ -67,6 +72,7 @@ def survey_detail(request, survey_id):
   taken_count = len(survey.users_taken.all())
   return render(request, 'surveys/detail.html', {'survey': survey, 'questions': questions, 'taken': taken, 'taken_count' : taken_count})
 
+@login_required
 def dashboard(request):
   surveys = Survey.objects.filter(owner=request.user.id)
   for survey in surveys:
@@ -80,10 +86,11 @@ def dashboard(request):
       survey.taken = False
   return render(request, 'dashboard.html', {'surveys' : surveys})
 
-class SurveyDelete(DeleteView):
+class SurveyDelete(LoginRequiredMixin, DeleteView):
   model = Survey
   success_url = '/dashboard/'
 
+@login_required
 def survey_vote(request, survey_id):
   for key, value in request.POST.items():
     if key != 'csrfmiddlewaretoken':
@@ -93,11 +100,13 @@ def survey_vote(request, survey_id):
       q.save()
   return redirect('assoc_user', survey_id=survey_id, user_id=request.user.id)
 
+@login_required
 def survey_answer(request, survey_id):
   survey = Survey.objects.get(id=survey_id)
   questions = Question.objects.filter(survey=survey_id)
   return render(request, 'surveys/answer.html', {'survey': survey, 'questions': questions})
 
+@login_required
 def assoc_user(request, survey_id, user_id):
   Survey.objects.get(id=survey_id).users_taken.add(user_id)
   return redirect('index')

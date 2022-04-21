@@ -4,16 +4,13 @@
 <div id="detail_heading">
   <h1>{{ survey.name }}</h1>
 
-  <div class="#">
+  <div>
     <h3>{{ survey.description }}</h3>
-    {% if user.id == survey.owner_id and taken_count == 0%}
-    <a href="{% url 'question_create' survey.id %}">Question</a>
-    {% endif %}
 
     {% if taken %}
     <p>You've Already Taken This survey</p>
     {% elif questions.count > 0 %}
-    <a href="{% url 'survey_answer' survey.id %}"> | Take Survey</a>
+    <a class="btn" href="{% url 'survey_answer' survey.id %}">Take Survey</a>
     {% endif %}
   </div>
 </div>
