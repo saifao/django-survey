@@ -74,6 +74,10 @@ def dashboard(request):
       survey.hasQuestions = True
     else:
       survey.hasQuestions = False
+    if survey.users_taken.filter(id=request.user.id).exists():
+      survey.taken = True
+    else:
+      survey.taken = False
   return render(request, 'dashboard.html', {'surveys' : surveys})
 
 class SurveyDelete(DeleteView):
