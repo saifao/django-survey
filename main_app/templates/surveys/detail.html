@@ -7,13 +7,13 @@
   <div class="#">
     <h3>{{ survey.description }}</h3>
     {% if user.id == survey.owner_id and taken_count == 0%}
-    <a href="{% url 'question_create' survey.id %}">Question |</a>
+    <a href="{% url 'question_create' survey.id %}">Question</a>
     {% endif %}
 
     {% if taken %}
     <p>Taken</p>
-    {% else %}
-    <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
+    {% elif questions.count > 0 %}
+    <a href="{% url 'survey_answer' survey.id %}"> | Take Survey</a>
     {% endif %}
   </div>
 </div>

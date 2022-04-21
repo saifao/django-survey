@@ -8,12 +8,24 @@
     {% else %}
         {% for survey in surveys %}
             {% if survey.hasQuestions == True %}
-                <div class="card">
-                    <div class="card-content">
-                        <span class="card-title">{{ survey.name }}</span>
-                        <p id="description">{{ survey.description }}</p>
-                        <a href="{% url 'detail' survey.id %}" class="waves-effect waves-light btn">View Details</a>
-                        <a href="{% url 'survey_delete' survey.id %}" class="waves-effect waves-light btn">Delete</a>
+                <div class="row surveycard" >
+                    <div class="col s12 m7">
+                        <div class="card card-height horizontal blue-grey darken-1">
+                        <div class="card-stacked">
+                            <div class="card-content white-text">
+                                <span class="card-title">{{ survey.name }}</span>
+                                <p>{{ survey.description }}</p>
+                            </div>
+                            <div class="card-action">
+                                <a href="{% url 'detail' survey.id %}">View Details</a>
+                                {% if survey.taken %}
+                                <a class="grey-text" href="#">Taken</a>
+                                {% else %}
+                                    <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        </div>
                     </div>
                 </div>
             {% endif %}
@@ -22,14 +34,26 @@
     <h1>Unpublished</h1>
     {% for survey in surveys %}
         {% if survey.hasQuestions == False %}
-            <div class="card">
-                <div class="card-content">
-                    <span class="card-title">{{ survey.name }}</span>
-                    <p id="description">{{ survey.description }}</p>
-                    <a href="{% url 'detail' survey.id %}" class="waves-effect waves-light btn">View Details</a>
-                    <a href="{% url 'survey_delete' survey.id %}" class="waves-effect waves-light btn">Delete</a>
+        <div class="row surveycard" >
+            <div class="col s12 m7">
+                <div class="card card-height horizontal blue-grey darken-1">
+                <div class="card-stacked">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ survey.name }}</span>
+                        <p>{{ survey.description }}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'detail' survey.id %}">View Details</a>
+                        {% if survey.taken %}
+                        <a class="grey-text" href="#">Taken</a>
+                        {% else %}
+                            <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
+                        {% endif %}
+                    </div>
+                </div>
                 </div>
             </div>
+        </div>
         {% endif %}
     {% endfor %}
 </div>

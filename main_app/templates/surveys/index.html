@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>All Surveys</h1>
+<h1 class="page-title">All Surveys</h1>
 
 <div class="question-cards">
   {% for survey in surveys %}
     {% if survey.hasQuestions == True %}
+        <!--
         <div class="row surveycard" >
             <div class="col s12 m6">
-                <div class="card blue-grey darken-1">
+                <div class="card card-height blue-grey darken-1">
                     <div class="card-content white-text">
                         <span class="card-title">{{ survey.name }}</span>
                         <p>{{ survey.description }}</p>
@@ -16,7 +17,7 @@
                     <div class="card-action">
                         <a href="{% url 'detail' survey.id %}">View Details</a>
                         {% if survey.taken %}
-                        <span class="red-text"href="#">Taken </span>
+                        <a class="grey-text" href="#">Taken</a>
                         {% else %}
                             <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
                         {% endif %}
@@ -24,6 +25,29 @@
                 </div>
             </div>
         </div>
+
+        -->
+        <div class="row surveycard" >
+            <div class="col s12 m7">
+                <div class="card card-height horizontal blue-grey darken-1">
+                <div class="card-stacked">
+                    <div class="card-content white-text">
+                        <span class="card-title">{{ survey.name }}</span>
+                        <p>{{ survey.description }}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="{% url 'detail' survey.id %}">View Details</a>
+                        {% if survey.taken %}
+                        <a class="grey-text" href="#">Taken</a>
+                        {% else %}
+                            <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
+                        {% endif %}
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        
     {% endif %}
   {% endfor %}
 </div>
