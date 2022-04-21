@@ -29,6 +29,8 @@ def home(request):
 def surveys_index(request):
   surveys = Survey.objects.all()
   for survey in surveys:
+    if Question.objects.filter(survey=survey).exists():
+      survey.hasQuestions = True
     if survey.users_taken.filter(id=request.user.id).exists():
       survey.taken = True
     else:
@@ -67,6 +69,11 @@ def survey_detail(request, survey_id):
 
 def dashboard(request):
   surveys = Survey.objects.filter(owner=request.user.id)
+  for survey in surveys:
+    if Question.objects.filter(survey=survey).exists():
+      survey.hasQuestions = True
+    else:
+      survey.hasQuestions = False
   return render(request, 'dashboard.html', {'surveys' : surveys})
 
 class SurveyDelete(DeleteView):

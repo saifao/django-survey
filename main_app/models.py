@@ -30,5 +30,4 @@ class Question(models.Model):
     
     def get_absolute_url(self):
        return reverse('question_create', kwargs={'survey_id': self.survey.id})
-       ##return reverse('detail', kwargs={'survey_id': self.survey.id})
 

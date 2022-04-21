@@ -110,3 +110,30 @@ footer.page-footer {
     text-align: center;
     padding-top: 1em;
 }
+
+/*
+dashboard css
+*/
+
+.dashboard-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-container .card {
+    width: 50vw;
+}
+
+.dashboard-container p{
+    color: black;
+    margin-bottom: 5px;
+} 
+
+.dashboard-container .card-title {
+    color: black;
+}
+
+#description {
+    margin-bottom: 5px;
+}
