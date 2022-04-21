@@ -11,7 +11,7 @@
     {% endif %}
 
     {% if taken %}
-    <p>Taken</p>
+    <p>You've Already Taken This survey</p>
     {% elif questions.count > 0 %}
     <a href="{% url 'survey_answer' survey.id %}"> | Take Survey</a>
     {% endif %}
@@ -26,20 +26,20 @@
     <table>
       <thead>
         <th>Option</th>
-        <th>Votes</th>
+        <th class="votecount">Votes</th>
       </thead>
       <tbody>
         <tr>
           <td>{{ question.option_one }}</td>
-          <td>{{ question.option_one_votes }}</td>
+          <td class="votecount">{{ question.option_one_votes }}</td>
         </tr>
         <tr>
           <td>{{ question.option_two }}</td>
-          <td>{{ question.option_two_votes }}</td>
+          <td class="votecount">{{ question.option_two_votes }}</td>
         </tr>
         <tr>
           <td>{{ question.option_three }}</td>
-          <td>{{ question.option_three_votes }}</td>
+          <td class="votecount">{{ question.option_three_votes }}</td>
         </tr>
       </tbody>
     </table>
