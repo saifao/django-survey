@@ -43,10 +43,15 @@
         </nav>
     </div>
         <ul class="sidenav" id="mobile-links">
+            {% if user.is_authenticated %}
             <li><a href="{% url 'index' %}">Explore</a></li>
             <li><a href="{% url 'create' %}">Create Survey</a></li>
             <li><a href="{% url 'dashboard'%}">Dashboard</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
         </ul>
     </header>
     <script>
