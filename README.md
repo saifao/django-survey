@@ -23,10 +23,7 @@ Trello project plan and design:
 ### Screenshots
 
 Landing page
-![](/public/images/landing_page.png)
-
-Beer View Page
-![](/public/images/beer_view.png)
+![Landing Page](https://imgur.com/oCAKsY8)
 
 ### Next Steps
 - Allow users to upload images to enhance the appearance of a survey and add images to the context of a question.
