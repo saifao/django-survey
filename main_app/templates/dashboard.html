@@ -23,6 +23,7 @@
                                 {% else %}
                                     <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
                                 {% endif %}
+                                <a href="{% url 'survey_delete' survey.id %}">Delete</a>
                             </div>
                         </div>
                         </div>
@@ -44,11 +45,7 @@
                     </div>
                     <div class="card-action">
                         <a href="{% url 'detail' survey.id %}">View Details</a>
-                        {% if survey.taken %}
-                        <a class="grey-text" href="#">Taken</a>
-                        {% else %}
-                            <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
-                        {% endif %}
+                        <a href="{% url 'survey_delete' survey.id %}">Delete</a>
                     </div>
                 </div>
                 </div>
