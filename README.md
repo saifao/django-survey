@@ -23,7 +23,7 @@ Trello project plan and design:
 ### Screenshots
 
 Landing page
-![Landing Page](https://imgur.com/oCAKsY8)
+![Landing Page](https://i.imgur.com/oCAKsY8.png?1)
 
 ### Next Steps
 - Allow users to upload images to enhance the appearance of a survey and add images to the context of a question.
