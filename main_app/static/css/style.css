@@ -43,8 +43,10 @@ footer.page-footer {
 
 
 .surveycard {
+    display: flex;
+    align-items: center;
     height: 200px;
-    width: 400px;
+    width: 500px;
 }
 
 .col,
@@ -54,7 +56,8 @@ footer.page-footer {
 }
 
 .col {
-    width: 100% !important;
+    width: 50vw !important;
+    /* width: 100% !important; */
 }
 
 
@@ -106,43 +109,18 @@ footer.page-footer {
 }
 
 #questiontext {
-    text-align: center;
     padding-top: 1em;
+    padding-left: 2em;
 }
 
-/*
-dashboard css
-*/
-
-.dashboard-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.dashboard-container > div {
-    margin: 0;
-    margin-bottom: 10px;
-}
-
-.dashboard-container .card {
-    width: 50vw;
-}
-
-.dashboard-container p{
-    color: black;
-    margin-bottom: 5px;
-} 
-
-.dashboard-container .card-title {
+.questiontext {
+    font-size: large;
     color: black;
 }
 
 #description {
     margin-bottom: 5px;
 }
-
-
 
 .page-title {
     text-align: center !important;
@@ -156,3 +134,15 @@ dashboard css
     margin: 8px;
 }
 
+.page-title {
+    text-align: center;
+}
+
+.dashtitle {
+    text-align: center;
+}
+
+.votecount {
+    text-align: right;
+    padding-right: 20em;
+}

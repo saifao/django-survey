@@ -1,61 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="dashboard-container">
-    <h1>My Surveys</h1>
-    {% if surveys.count == 0 %}
-        <h3>No surveys yet. Create a survey!</h3>
-    {% else %}
-        {% for survey in surveys %}
-            {% if survey.hasQuestions == True %}
-                <div class="row surveycard" >
-                    <div class="col s12 m7">
-                        <div class="card card-height horizontal blue-grey darken-1">
-                        <div class="card-stacked">
-                            <div class="card-content white-text">
-                                <span class="card-title">{{ survey.name }}</span>
-                                <p>{{ survey.description }}</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="{% url 'detail' survey.id %}">View Details</a>
-                                {% if survey.taken %}
-                                <a class="grey-text" href="#">Taken</a>
-                                {% else %}
-                                    <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
-                                {% endif %}
-                            </div>
-                        </div>
-                        </div>
-                    </div>
+<h1 class="dashtitle">My Survey</h1>
+{% if surveys.count == 0 %}
+<h3>No surveys yet. Create a survey!</h3>
+{% else %}
+{% for survey in surveys %}
+{% if survey.hasQuestions == True %}
+<div class="row surveycard">
+    <div class="col s12 m7">
+        <div class="card card-height horizontal blue-grey darken-1">
+            <div class="card-stacked">
+                <div class="card-content white-text">
+                    <span class="card-title">{{ survey.name }}</span>
+                    <p>{{ survey.description }}</p>
                 </div>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-    <h1>Unpublished</h1>
-    {% for survey in surveys %}
-        {% if survey.hasQuestions == False %}
-        <div class="row surveycard" >
-            <div class="col s12 m7">
-                <div class="card card-height horizontal blue-grey darken-1">
-                <div class="card-stacked">
-                    <div class="card-content white-text">
-                        <span class="card-title">{{ survey.name }}</span>
-                        <p>{{ survey.description }}</p>
-                    </div>
-                    <div class="card-action">
-                        <a href="{% url 'detail' survey.id %}">View Details</a>
-                        {% if survey.taken %}
-                        <a class="grey-text" href="#">Taken</a>
-                        {% else %}
-                            <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
-                        {% endif %}
-                    </div>
-                </div>
+                <div class="card-action">
+                    <a href="{% url 'detail' survey.id %}">View Details</a>
+                    {% if survey.taken %}
+                    <a class="grey-text" href="#">Taken</a>
+                    {% else %}
+                    <a href="{% url 'question_create' survey.id %}">Question</a>
+                    <a href="{% url 'survey_answer' survey.id %}">Take Survey</a>
+                    {% endif %}
+                    <a href="{% url 'survey_delete' survey.id %}">Delete</a>
                 </div>
             </div>
         </div>
-        {% endif %}
-    {% endfor %}
+    </div>
 </div>
+{% endif %}
+{% endfor %}
+{% endif %}
+<h1 class="dashtitle">Unpublished</h1>
+{% for survey in surveys %}
+{% if survey.hasQuestions == False %}
+<div class="row surveycard">
+    <div class="col s12 m7">
+        <div class="card card-height horizontal blue-grey darken-1">
+            <div class="card-stacked">
+                <div class="card-content white-text">
+                    <span class="card-title">{{ survey.name }}</span>
+                    <p>{{ survey.description }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'detail' survey.id %}">View Details</a>
+                    <a href="{% url 'survey_delete' survey.id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
 
 {% endblock %}
