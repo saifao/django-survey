@@ -18,7 +18,7 @@ Responsive design has been applied.
 ### Getting Started:
 Heroku deployment:
 - https://surveyfunky.herokuapp.com
-- 
+
 Trello project plan and design:
 - https://trello.com/b/DotYsX5C/djangoboard
 
